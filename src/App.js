@@ -10,6 +10,8 @@ import Login from './component/Admin/login'
 import Meat from './component/Gridlist/Meat'
 import SearchAppBar from './static/navBar/navbar'
 import SimpleBottomNavigation from './static/navButton'
+import Massege from './component/tabs/sendMassage'
+import Feedback from './component/tabs/massage'
 import SearchExample from './static/navBar/searchexample'
 window.Token=localStorage.getItem('Token')
 class App extends React.Component {
@@ -28,10 +30,15 @@ class App extends React.Component {
         <Route path="/meat" component={Meat} />
         <Route  excat path="/admin" component={Login} />
         <Route excat path="/tab" component={TabContainer} />
-       
+        <Route excat path="/search" component={SearchExample}  />
+
+        <Route  excat path="/Home" component={Login} />
+
+        <Route excat path="/Massege" component={Massege} />
+        <Route excat path="/Feedback" component={Feedback}  />
         <Route  path="/item/:id" component={Topic} />
         <SimpleBottomNavigation />
-      </Router><SearchExample items={libraries} />
+      </Router>
     );
   }
 }

@@ -13,7 +13,9 @@ import SwipeableTemporaryDrawer from './MenuList'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Home from '@material-ui/icons/MoreVert';
+import Notification from '@material-ui/icons/Notifications';
+
+import Push from './pustnoti'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router';
  async function getData(url, data) {
@@ -108,46 +110,21 @@ export default class SearchAppBar extends React.Component {
       <AppBar position="static" top="0" style={{ background: "#9b0f07" }}>
         <Toolbar>
           <SwipeableTemporaryDrawer />
-
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-
-            aria-label="Open drawer"
-          >
-
-          </IconButton>
           <Typography className={classes.title} className="title" variant="h4" noWrap style={{ fontFamily: "Times New Roman" }} >
             Pizza Shop
           </Typography>
 
-   
+   {/*}
           <div id="wrap">
             <form action="" autoComplete="on">
-              <input id="search" name="search" type="text" /><input id="search_submit" value="Rechercher" type="submit" />
+              <input id="search" name="search" type="text"  />
             </form>
           </div>
-
-            <div>
-      <Home aria-controls="simple-menu" aria-haspopup="true" style={{fontSize:"40px",paddingLeft:"5px"}} onClick={this.handleClick} />
-       
-    
-      <Menu
-        id="simple-menu"
-       // anchorEl={anchorEl}
-       anchorEl={this.state.menuOpen}
-        open={Boolean(this.state.menuOpen)}
-        keepMounted
-        //open={Boolean(anchorEl)}
-          
-        onClose={this.handleClose}
-      >
-    
-       <Link to="/admin"> <MenuItem onClick={this.handleClose}>Logout</MenuItem></Link>
-      </Menu>
-    </div>
+  */}
+          <Notification style={{fontSize:"30px",right:"5px", position: "absolute"}} onClick={this.notification}/>
         </Toolbar>
  
+        <Push />
       </AppBar>
     </div>
   );

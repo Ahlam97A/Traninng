@@ -25,7 +25,7 @@ export default function SimpleBottomNavigation() {
   }
   return (
     <BottomNavigation style={{ color: "white", background: "#9b0f07" }} value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction component={Link} to="/address" style={{ fontSize: "30px", color: "white" }} label="Our Address" icon={<LocationOnIcon style={{ width: "40%", fontSize: "30px", color: "white" }} />} />
+      <BottomNavigationAction component={Link} to="/address" style={{ fontSize: "30px", color: "white" }}  icon={<LocationOnIcon style={{ width: "40%", fontSize: "30px", color: "white" }} />} />
       <BottomNavigationAction component={Link} to="/" style={{ fontSize: "50px", color: "white" }} label="Back" icon={<Exit style={{ width: "40%", fontSize: "30px", color: "white" }} />} />
       <BottomNavigationAction component={Link} to="/search" style={{ fontSize: "50px", color: "white" }} label="Search" icon={<Search style={{ width: "40%", fontSize: "30px", color: "white" }} />} />
 

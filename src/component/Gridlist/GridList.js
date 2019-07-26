@@ -56,10 +56,10 @@ export default class SingleLineGridList extends React.Component {
   }
   componentDidMount() {
     var th = this;
-    getData(`http://localhost:5000/image`, this.state)
+    getData(`http://training.iscosoft.com:5000/image`, this.state)
 
       .then(data => {
-        console.log("get image", JSON.stringify(data))
+        //console.log("get image", JSON.stringify(data))
         this.setState({ image: data })
       })
       .catch(error => console.error(error));

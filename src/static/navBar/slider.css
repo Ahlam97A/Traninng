@@ -1,0 +1,10 @@
+
+#range {
+    -webkit-appearance: none;
+    outline: none;
+    background: rgb(red, green, blue);
+    height: 6px;
+    width: 200px;
+    border-radius: 5px;
+ 
+  }

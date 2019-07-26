@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -42,6 +42,8 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function AdvancedGridList() {
   const classes = useStyles();
+  const [imges,setimges]=React.useState([])
+  const [data,setdata]=React.useState()
   const tileData = [
     {
       img: A,
@@ -81,18 +83,43 @@ export default function AdvancedGridList() {
       }
 
   ];
+  
+ async function getData(url,data) {
+  // Default options are marked with *
+  let options = {
 
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  }
+  let response = await fetch(url, options);
+  return await response.json(); 
+}
+
+useEffect(() =>{
+getData(`http://training.iscosoft.com:5000/img11`)
+
+.then(data => {
+  setimges(data)
+ 
+})
+.catch(error =>{console.error(error)
+console.log(error)} );
+
+},[])
   return (
     <div className={classes.root} style={{ background:"#e7e7e9",color:"black"}}>
       <p style={{fontFamily:'Amiri',fontSize:"25px"}}>القائمة</p>
       <GridList cellHeight={200} spacing={1} className={classes.gridList}>
-        {tileData.map(tile => (
-          <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
-            <img src={tile.img} alt={tile.title} style={{fontSize:"15px"}}/>
-            <GridListTileBar style={{fontSize : "xx-large"}}
-              title={tile.title}
-              titlePosition="top"
-        
+        {imges.map((tile,id) => (
+          <GridListTile key={tile.image} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
+            <img  src={'http://training.iscosoft.com:5000/static/img/'+tile.image}  alt={tile.name}/> 
+            
+            <GridListTileBar style={{fontSize : "25px"}}
+              title={tile.name}
+              titlePosition="top"        
               actionPosition="left"
               className={classes.titleBar}
             />
@@ -102,3 +129,14 @@ export default function AdvancedGridList() {
     </div>
   );
 }
+
+/*
+<GridListTile key={id} component={Link} to={"image/"+item.id}>
+<img  src={'http://localhost:5000/static/images/'+item.id+'/'+item.name} /> 
+ <GridListTileBar
+   title={item.name}
+   classes={{
+     root: classes.titleBar,
+     title: classes.title,
+   }}
+*/

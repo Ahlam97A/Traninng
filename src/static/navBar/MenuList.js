@@ -7,32 +7,47 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import Feedback from '@material-ui/icons/Feedback';
 import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/icons/Menu';
 import Home from '@material-ui/icons/Home';
 import { Link } from "react-router-dom";
+
 const useStyles = makeStyles({
   list: {
-    width: 250,
-    background: '#e7e7e9'
+    width: 200,
+    height:500
   },
   fullList: {
     width: 'auto',
-    background: '#e7e7e9'
   },
+  text :{
+    color:"black",
+    fontWeight:"bold",
+    fontSize:"25px",
+    fontFamily:"Times New Roman"
+  },
+  color:{
+     color:"black",
+     fontSize: "30px"
+
+  }
 });
-function SwipeableTemporaryDrawer() {
+
+export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
   });
+
   const toggleDrawer = (side, open) => event => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
+
     setState({ ...state, [side]: open });
   };
+
   const sideList = side => (
     <div
       className={classes.list}
@@ -40,22 +55,44 @@ function SwipeableTemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        {['Home Page', 'Starred', 'Send email'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <Home /> : <MailIcon />}</ListItemIcon>
-            <Link to="/user">
-              <ListItemText primary={text} />
-            </Link>
+      <List style={{width:"100%"}}>
+        <Link to="/Home">
+          <ListItem button>
+            <ListItemIcon className={classes.color}>
+              <Home  />
+              </ListItemIcon>
+              <ListItemText primary="Home"  className={classes.text}/>
+           
           </ListItem>
-        ))}
+        </Link>
+
+        <Link to="/Massege">
+          <ListItem button>
+            <ListItemIcon className={classes.color}> <MailIcon /> </ListItemIcon>
+              
+              <ListItemText primary={'Massage'} className={classes.text} />
+           
+          </ListItem>
+        </Link>
+
+        <Link to="/Feedback">
+          <ListItem button>
+            <ListItemIcon className={classes.color}> <Feedback /> </ListItemIcon>
+              
+              <ListItemText primary={'Feedback'}  className={classes.text}/>
+           
+          </ListItem>
+        </Link>
+        
       </List>
+      
+      
     </div>
   );
   return (
     <div>
-      <Button onClick={toggleDrawer('left', true)}><MenuIcon style={{ color: "white", fontSize: "30px" }} /></Button>
-      <SwipeableDrawer
+      <Button onClick={toggleDrawer('left', true)}> <Menu style={{ fontSize:"30px",color:"white" }} /> </Button>
+      <SwipeableDrawer style={{height:100}}
         open={state.left}
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
@@ -65,4 +102,3 @@ function SwipeableTemporaryDrawer() {
     </div>
   );
 }
-export default SwipeableTemporaryDrawer;
